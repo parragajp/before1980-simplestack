@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<title>
+    House Before 1980 API
+</title>
+<h2>
+    House Built Before 1980 API Service
+</h2>
+<p>
+    Simple API Service that let's you send new instances of houses against
+    my random forest model built in scikit-learn.
+</p>
+<h3>
+    Endpoints
+</h3>
+<li>
+    / or /about - shows info about the api service
+</li>
+<li>
+    /isAlive - shows "Yessir!" if service is up and running
+</li>
+<li>
+    /predict - api where you send params of a new house instance and it returns
+    a prediction
+</li>
+<h3>
+    Parameters Needed
+</h3>
+<li>
+    livearea => int
+</li>
+<li>
+    stories => int
+</li>
+<li>
+    bdrms => int
+</li>
+<li>
+    baths => int
+</li>
+<h3>
+    Example URL Request
+</h3>
+<li>
+    <em>http://localhost:1001/predict?livearea=2401&stories=2&bdrms=3&baths=1</em>
+</li>
+<h3>Returns</h3>
+<li>
+    An array of features provided by you in the api call.
+</li>
+<li>A <b>1</b> if house is built before 1980 and <b>0</b> otherwise.</li>
+
+
+{% endblock content %}

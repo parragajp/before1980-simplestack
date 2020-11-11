@@ -1,2 +1,33 @@
 # before1980-simplestack
 End to end machine learning project that predicts whether a house was built before 1980. Used flask to create api services and website. 
+
+## Helpful commands
+
+### How to spin up container, if you have docker already installed
+
+Note: It will download the image if you don't already have it.
+
+```
+docker run -p 1001:80 brandonjenkins/simple_house_mod:first
+```
+
+### How to work with database after creating tables with classes
+```
+# Creating sqllite table
+from b41980 import db
+db.create_all()
+
+# Writing new data to table
+from b41980.models import House
+house1 = House(livearea=2200, stories=2, bdrms=3, baths=1)  # Automatically created id
+db.session.add(house1)
+db.session.commit()
+
+# Querying the data
+House.query.all()  # Only works if __repr__ is set
+House.query.first()
+House.query.get(1)  # Grabs row by id
+
+# Drop the table
+db.drop_all()
+```

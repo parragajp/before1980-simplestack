@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<html>
+<title>
+    Prediction API
+</title>
+
+<body>
+    <h3>House Specifications:</h3>
+    <p>Living Area: {{ posts.livearea }}</p>
+    <p>Stories: {{ posts.stories }}</p>
+    <p>Bedrooms: {{ posts.bdrms }}</p>
+    <p>Baths: {{ posts.baths }}</p>
+
+</body>
+
+
+<body>
+    <h3>Prediction: {{ posts.prediction }}</h3>
+</body>
+
+
+
+</html>
+{% endblock content %}
