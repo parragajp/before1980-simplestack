@@ -9,4 +9,4 @@ class House(db.Model):
     baths = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return "House Information"
+        return f"House {self.livearea} {self.stories} {self.bdrms} {self.baths}"

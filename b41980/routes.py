@@ -72,6 +72,22 @@ def predict():
 
 @app.route('/predictresults')
 def predictresults():
-    posts = []
+    h1 = House.query.order_by(House.id.desc()).first()
+
+    # Creating feature array
+    new_instance = np.array([[h1.livearea, h1.stories, h1.bdrms, h1.baths]])
+
+    # Predicting new_instance target
+    prediction = rf.predict(new_instance)
+
+    # Creating dictionary to pass into the html
+    posts = {
+        "livearea": h1.livearea,
+        "stories": h1.stories,
+        "bdrms": h1.bdrms,
+        "baths": h1.baths,
+        "prediction": prediction
+    }
+
     return render_template("predictresults.html", title="Prediction Results",
                            posts=posts)

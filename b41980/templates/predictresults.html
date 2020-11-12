@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>
-    Coming Soon :)
-</h1>
+<h1>House Predictions</h1>
+<h3>House Information</h3>
+<li>Liveable Sqft: {{ posts.livearea }}</li>
+<li>Stories: {{  posts.stories }}</li>
+<li>Bedrooms: {{ posts.bdrms }}</li>
+<li>Baths: {{posts.baths }} </li>
+<br>
+<h2>The house was <b>{{ posts.prediction }}</b> built before 1980!</h2>
+
 {% endblock content %}
