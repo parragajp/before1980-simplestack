@@ -80,13 +80,16 @@ def predictresults():
     # Predicting new_instance target
     prediction = rf.predict(new_instance)
 
+    # Returning text depending on the prediction
+    pred = "not" if prediction == 0 else ""
+
     # Creating dictionary to pass into the html
     posts = {
         "livearea": h1.livearea,
         "stories": h1.stories,
         "bdrms": h1.bdrms,
         "baths": h1.baths,
-        "prediction": prediction
+        "prediction": pred
     }
 
     return render_template("predictresults.html", title="Prediction Results",
