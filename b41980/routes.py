@@ -56,8 +56,9 @@ def predict():
     # Validating form submission
     if form.validate_on_submit():
         # Getting information from the form and instantiating a row in the db
-        house = House(livearea=form.livearea.data, stories=form.stories.data,
-                      bdrms=form.bdrms.data, baths=form.baths.data)
+        house = House(livearea=form.livearea.data, bdrms=form.bdrms.data,
+                      baths=form.baths.data, one_story=form.one_story.data,
+                      att_garage=form.att_garage.data, basement=form.basement.data)
         # Adding row to db - think of comitting in version control
         db.session.add(house)
         # Pushing the new row to the actual db
@@ -75,22 +76,30 @@ def predictresults():
     h1 = House.query.order_by(House.id.desc()).first()
 
     # Creating feature array
-    new_instance = np.array([[h1.livearea, h1.stories, h1.bdrms, h1.baths]])
+    new_instance = np.array([[h1.livearea, h1.bdrms, h1.baths, h1.one_story,
+                              h1.att_garage, h1.basement]])
 
     # Predicting new_instance target
     prediction = rf.predict(new_instance)
 
     # Returning text depending on the prediction
-    pred = "not" if prediction == 0 else ""
+    pred = "not" if prediction[0] == 0 else ""
 
     # Creating dictionary to pass into the html
     posts = {
         "livearea": h1.livearea,
-        "stories": h1.stories,
         "bdrms": h1.bdrms,
         "baths": h1.baths,
+        "one_story": h1.one_story,
+        "att_garage": h1.att_garage,
+        "basement": h1.basement,
         "prediction": pred
     }
 
     return render_template("predictresults.html", title="Prediction Results",
                            posts=posts)
+
+
+@app.route('/resume')
+def resume(id="/BrandonJenkins10-20.pdf"):
+    return render_template('resume.html')
