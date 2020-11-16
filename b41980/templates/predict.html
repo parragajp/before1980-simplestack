@@ -21,20 +21,6 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ form.stories.label(class="form-control-label") }}
-
-                {% if form.stories.errors %}
-                {{ form.stories(class="form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in form.stories.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.stories(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
                 {{ form.bdrms.label(class="form-control-label") }}
 
                 {% if form.bdrms.errors %}
@@ -60,6 +46,48 @@
                 </div>
                 {% else %}
                 {{ form.baths(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.one_story.label(class="form-control-label") }}
+
+                {% if form.one_story.errors %}
+                {{ form.one_story(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.one_story.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.one_story(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.att_garage.label(class="form-control-label") }}
+
+                {% if form.att_garage.errors %}
+                {{ form.att_garage(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.att_garage.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.att_garage(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.basement.label(class="form-control-label") }}
+
+                {% if form.basement.errors %}
+                {{ form.basement(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.basement.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.basement(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
             <div class="form-group">
