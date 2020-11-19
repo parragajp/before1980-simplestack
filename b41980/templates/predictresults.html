@@ -1,6 +1,19 @@
 {% extends "layout.html" %}
 
 {% block content %}
+    <head>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.8.1"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+    </head>
+    <title>
+        Prediction Results
+    </title>
 
 
 
@@ -18,7 +31,26 @@
             <br>
             <h2>The house was <b>{{ posts.prediction }}</b> built before 1980!</h2>
         </div>
+        <div class="col-md-16" id="vis">
+                    <script type="text/javascript">
+                        var spec = "{{ url_for('static', filename='isomap_spec.json') }}";
+                        var opt = { renderer: "svg" }
+                        vegaEmbed('#vis', spec, opt).then(function (result) {
+                            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+                        }).catch(console.error);
+                    </script>
+        </div>
     </div>
 </main>
+<hr>
+
+    <h3>Model Performance</h3>
+    
+    <body>
+    
+        <div id="vis"></div>
+    
+
+    </body>
 
 {% endblock content %}
