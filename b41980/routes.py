@@ -1,12 +1,23 @@
 from flask import request, render_template, url_for, flash, redirect
 from joblib import load
 import numpy as np
+import pandas as pd
+import altair as alt
 from b41980.forms import HouseForm
 from b41980.models import House
 from b41980 import app, db
+from b41980.ml_helpers import alt_avenir
 
-# Loading in our trained model
-rf = load("rf_before1980.joblib")
+# Altair settings
+alt.themes.register('alt_avenir', alt_avenir)
+alt.themes.enable('alt_avenir')
+alt.data_transformers.disable_max_rows()
+props = {'width': 400, 'height': 300}
+
+# Loading in our trained model and data
+rf = load("b41980/model/rf_before1980.joblib")
+iso_pipe = load("b41980/model/isomap.joblib")
+iso_data = pd.read_json("b41980/data/isomap_chart_data.json")
 
 # Creating api endpoints
 
@@ -82,8 +93,28 @@ def predictresults():
     # Predicting new_instance target
     prediction = rf.predict(new_instance)
 
+    # Principal Components
+    iso_new_instance = iso_pipe.transform(new_instance)
+    iso_new_data = pd.DataFrame(iso_new_instance, columns=['pca1', 'pca2'])
+
     # Returning text depending on the prediction
     pred = "not" if prediction[0] == 0 else ""
+
+    # Creating a sweet altair chart
+    iso_chart = alt.Chart(iso_data).mark_circle(opacity=.4).encode(
+        alt.X("pca1", title="principal component 1"),
+        alt.Y("pca2", title="principal component 2"),
+        alt.Color("target:N", title='Built before 1980', scale=alt.Scale(range=["gray", "orange"]))
+    )
+
+    iso_chart = iso_chart + alt.Chart(iso_new_data).mark_point(
+        opacity=1, color="#CA03FF", filled=True, size=150).encode(
+        alt.X("pca1"),
+        alt.Y("pca2"),
+        alt.ShapeValue('cross')).properties(**props).interactive()
+
+    # Saving chart to file -- probably will be building this inside the app though...
+    iso_chart.save("b41980/static/isomap_spec.json")
 
     # Creating dictionary to pass into the html
     posts = {

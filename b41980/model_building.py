@@ -40,4 +40,5 @@ np.savez_compressed("b41980/data/modelling_data.npz",
                     X_test=X_test,
                     y_test=y_test,
                     y_pred=y_pred,
-                    y_pred_proba=y_pred_prob)
+                    y_pred_proba=y_pred_prob,
+                    column_names=X_train.columns)
