@@ -1,8 +1,22 @@
-{% extends "layout.html" %}
+{% extends "layout2.html" %}
+
+{% block header %}
+<div class="row">
+  <div class="col">
+    <h2>Accuracy: 90.30%</h2>
+  </div>
+  <div class="col">
+    <h2>Precision: 92.58%</h2>
+  </div>
+  <div class="col">
+    <h2>Recall: 91.81%</h2>
+  </div>
+</div>
+<hr>
+{% endblock header%}
 
 {% block content %}
-
-    <head>
+<head>
   <style>
     .error {
         color: red;
@@ -15,11 +29,9 @@
 <title>
     House Before 1980 API
 </title>
-<h3>Model Performance</h3>
+<h1></h3>
 <body>
-
   <div id="vis"></div>
-
   <script type="text/javascript">
     var spec = "{{ url_for('static', filename='pr_spec.json') }}";
     var opt = {renderer: "svg"}
@@ -28,13 +40,12 @@
     }).catch(console.error);
   </script>
 </body>
+{% endblock content %}
 
-<h3>Feature Performance</h3>
-
+{% block content2 %}
+<h3></h3>
 <body>
-
   <div id="vis1"></div>
-
   <script type="text/javascript">
     var spec = "{{ url_for('static', filename='feat_import_spec.json') }}";
     var opt = { renderer: "svg" }
@@ -43,11 +54,4 @@
     }).catch(console.error);
   </script>
 </body>
-
-
-</html>
-</html>
-
-
-
-{% endblock content %}
+{% endblock content2 %}
