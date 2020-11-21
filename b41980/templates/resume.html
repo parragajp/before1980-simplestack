@@ -2,6 +2,12 @@
 
 {% block content %}
 
-<img width= 100% height = 100% src="{{ url_for('static', filename='DataScience-flaskapp-11-2020.pdf', _external=True) }}" />
+<object style="border-color: rgba(224, 224, 250, 0.11)" width=100% height="790" type="application/pdf" data="{{ url_for('static', filename='BrandonJenkins10-20.pdf') }}">
+    <p>Insert your error message here, if the PDF cannot be displayed.</p>
+</object>
 
 {% endblock content %}
+
+{% block content2 %}
+<img src="static/headshot.jpg" width=70% class="center">
+{%endblock content2%}
