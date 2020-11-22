@@ -53,8 +53,8 @@
                 {% block header %}{% endblock %}
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col px-md-2">
+        <div class="row">
+            <div class="col md-5">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                 {% for category, message in messages %}
@@ -66,7 +66,7 @@
                 {% endwith %}
                 {% block content %}{% endblock %}
             </div>
-            <div class="col px-md-2">
+            <div class="col md-5">
                 {% block content2 %}{% endblock %}
             </div>
         </div>
