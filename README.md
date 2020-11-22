@@ -5,7 +5,8 @@ End to end machine learning project that predicts whether a house was built befo
 
 ### How to spin up container, if you have docker already installed
 
-Note: It will download the image if you don't already have it.
+Note: It will download the image if you don't already have it. ~1 Gb.
+_This is the bare bones outdated version of the app._
 
 ```
 docker run -p 1001:80 brandonjenkins/simple_house_mod:first
