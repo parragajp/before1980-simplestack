@@ -42,24 +42,28 @@ def metrics_at_k(y_true, y_pred):
 
 def alt_avenir():
     font = "avenir"
+    background_color = "#EEEEF8"
+    font_color = "#444444"
 
     return {
         "config": {
             "view": {
-                'continuousWidth': 'container',
-                'continuousHeight': 'container'
+                'width': 325,
+                'height': 300
             },
-            "background": "#EEEEF8",
+            "background": background_color,
             "title": {
                 'font': font,
-                'fontSize': 20
+                'fontSize': 20,
+                'color': font_color
             },
             "axis": {
                 "grid": False,
                 'labelFontSize': 12,
                 'titleFontSize': 11,
                 "labelFont": font,
-                "titleFont": font
+                "titleFont": font,
+                'titleColor': font_color
             },
             "header": {
                 "labelFont": font,
@@ -68,7 +72,7 @@ def alt_avenir():
             "legend": {
                 "labelFont": font,
                 "titleFont": font,
-                "fillColor": "#EEEEF8",
+                "fillColor": background_color,
                 "padding": 10,
                 "labelFontSize": 17,
                 "titleFontSize": 17,
@@ -76,3 +80,5 @@ def alt_avenir():
             }
         }
     }
+
+
