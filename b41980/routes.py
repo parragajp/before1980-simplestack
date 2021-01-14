@@ -16,8 +16,8 @@ props = {'width': 400, 'height': 300}
 
 # Loading in our trained model and data
 rf = load("b41980/model/rf_before1980.joblib")
-iso_pipe = load("b41980/model/isomap.joblib")
-iso_data = pd.read_json("b41980/data/isomap_chart_data.json")
+lle_pipe = load("b41980/model/lle.joblib")
+lle_data = pd.read_json("b41980/data/lle_chart_data.json")
 
 # Creating api endpoints
 
@@ -94,27 +94,27 @@ def predictresults():
     prediction = rf.predict(new_instance)
 
     # Principal Components
-    iso_new_instance = iso_pipe.transform(new_instance)
-    iso_new_data = pd.DataFrame(iso_new_instance, columns=['pca1', 'pca2'])
+    lle_new_instance = lle_pipe.transform(new_instance)
+    lle_new_data = pd.DataFrame(lle_new_instance, columns=['pca1', 'pca2'])
 
     # Returning text depending on the prediction
     pred = "not" if prediction[0] == 0 else ""
 
     # Creating a sweet altair chart
-    iso_chart = alt.Chart(iso_data).mark_circle(opacity=.4).encode(
+    lle_chart = alt.Chart(lle_data).mark_circle(opacity=.4).encode(
         alt.X("pca1", title="principal component 1"),
         alt.Y("pca2", title="principal component 2"),
         alt.Color("target:N", title='Built before 1980', scale=alt.Scale(range=["gray", "orange"]))
     )
 
-    iso_chart = iso_chart + alt.Chart(iso_new_data).mark_point(
+    lle_chart = lle_chart + alt.Chart(lle_new_data).mark_point(
         opacity=1, color="#CA03FF", filled=True, size=150).encode(
         alt.X("pca1"),
         alt.Y("pca2"),
         alt.ShapeValue('cross')).properties(**props).interactive()
 
     # Saving chart to file -- probably will be building this inside the app though...
-    iso_chart.save("b41980/static/isomap_spec.json")
+    lle_chart.save("b41980/static/lle_spec.json")
 
     # Creating dictionary to pass into the html
     posts = {
@@ -132,5 +132,5 @@ def predictresults():
 
 
 @app.route('/resume')
-def resume(id="/BrandonJenkins10-20.pdf"):
+def resume(id="/BrandonJenkinsResume.pdf"):
     return render_template('resume.html')
