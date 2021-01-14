@@ -3,28 +3,41 @@
 {% block header %}
 <div class="row">
     <div class="col">
-    <h1>The house was <b>{{ posts.prediction }}</b> built before 1980!</h1>
+        <h1>The house was <b>{{ posts.prediction }}</b> built before 1980!</h1>
     </div>
 </div>
 <hr>
 {% endblock header%}
 
 {% block content %}
-    <title>
-        Prediction Results
-    </title>
+<title>
+    Prediction Results
+</title>
 <div>
     <h3>House Information</h3>
-    <li><h5>Liveable Sqft: {{ posts.livearea }}</h5></li>
-    <li><h5>Bedrooms: {{ posts.bdrms }}</h5></li>
-    <li><h5>Baths: {{posts.baths }}</h5></li>
-    <li><h5>One Story: {{  posts.one_story }}</h5></li>
-    <li><h5>Attached Garage: {{  posts.att_garage }}</h5></li>
-    <li><h5>Basement: {{  posts.basement }}</h5></li>
+    <li>
+        <h5>Liveable Sqft: {{ posts.livearea }}</h5>
+    </li>
+    <li>
+        <h5>Bedrooms: {{ posts.bdrms }}</h5>
+    </li>
+    <li>
+        <h5>Baths: {{posts.baths }}</h5>
+    </li>
+    <li>
+        <h5>One Story: {{ posts.one_story }}</h5>
+    </li>
+    <li>
+        <h5>Attached Garage: {{ posts.att_garage }}</h5>
+    </li>
+    <li>
+        <h5>Basement: {{ posts.basement }}</h5>
+    </li>
 </div>
 {% endblock content %}
 
 {% block content2 %}
+
 <head>
     <style>
         .error {
@@ -39,7 +52,7 @@
 <body>
     <div id="vis"></div>
     <script type="text/javascript">
-        var spec = "{{ url_for('static', filename='isomap_spec.json')  }}";
+        var spec = "{{ url_for('static', filename='lle_spec.json')  }}";
         var opt = { renderer: "svg" }
         vegaEmbed('#vis', spec, opt).then(function (result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
