@@ -36,6 +36,7 @@ db.drop_all()
 ### How to run app locally
 
 _You will need to have all the necessary packages installed_
+
 _Make sure your current directory is at the project level_
 
 ```
