@@ -1,5 +1,5 @@
 # before1980-simplestack
-End to end machine learning project that predicts whether a house was built before 1980. Used flask to create api services and website. 
+End to end machine learning project that predicts whether a house was built before 1980. Used flask to create api services and website. The initial app was put on docker hub. The most recent version of the app, which is far improved, has not been put in a docker image or docker hub. You can run it locally though. Instructions are below.
 
 ## Helpful commands
 
@@ -33,7 +33,7 @@ House.query.get(1)  # Grabs row by id
 db.drop_all()
 ```
 
-### How to run app locally
+### How to run most updated version of app locally
 
 _You will need to have all the necessary packages installed_
 
