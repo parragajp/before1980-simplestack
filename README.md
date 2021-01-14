@@ -13,7 +13,7 @@ docker run -p 1001:80 brandonjenkins/simple_house_mod:first
 ```
 
 ### How to work with database after creating tables with classes
-```
+```python
 # Creating sqllite table
 from b41980 import db
 db.create_all()
@@ -31,4 +31,13 @@ House.query.get(1)  # Grabs row by id
 
 # Drop the table
 db.drop_all()
+```
+
+### How to run app locally
+
+_You will need to have all the necessary packages installed_
+_Make sure your current directory is at the project level_
+
+```
+python3 run.py
 ```
