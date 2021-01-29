@@ -1,4 +1,5 @@
 from flask import request, render_template, url_for, flash, redirect
+import joblib
 from joblib import load
 import numpy as np
 import pandas as pd
